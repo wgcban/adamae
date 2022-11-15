@@ -11,6 +11,7 @@
 - We show that our *Ada*MAE outperforms state-of-the-art (SOTA) by $0.7\%$ and $1.1\%$ (in top-1) improvements on $SSv2$ and $Kinetics-400$, respectively.
 
 ![intro-fig](figs/adamae-intro-fig.jpeg)
+![intro-fig](figs/adamae-intro-fig-6.jpeg)
 
 
 ## A comparision
