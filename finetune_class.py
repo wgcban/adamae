@@ -12,6 +12,7 @@ from collections import OrderedDict
 
 from timm.data.mixup import Mixup
 from timm.models import create_model
+from timm.loss import LabelSmoothingCrossEntropy, SoftTargetCrossEntropy
 from timm.utils import ModelEma
 from optim_factory import create_optimizer, get_parameter_groups, LayerDecayValueAssigner
 
@@ -19,7 +20,6 @@ from datasets import build_dataset
 from msc.engine_for_finetuning import train_one_epoch, validation_one_epoch, final_test, merge
 from msc.utils import NativeScalerWithGradNormCount as NativeScaler
 from msc.utils import  multiple_samples_collate
-from msc.losses_ce import LabelSmoothingCrossEntropy, SoftTargetCrossEntropy
 import msc.utils
 import models.finetune.movinet
 import models.finetune.vit
@@ -169,7 +169,7 @@ def get_args():
                         help='Perform evaluation only')
     parser.add_argument('--dist_eval', action='store_true', default=False,
                         help='Enabling distributed evaluation')
-    parser.add_argument('--num_workers', default=4, type=int)
+    parser.add_argument('--num_workers', default=10, type=int)
     parser.add_argument('--pin_mem', action='store_true',
                         help='Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU.')
     parser.add_argument('--no_pin_mem', action='store_false', dest='pin_mem')
@@ -185,11 +185,6 @@ def get_args():
 
     # We do not use deepspeed in our training
     parser.add_argument('--enable_deepspeed', action='store_false', default=False)
-
-    # Adaptive fine-tunining 
-    # if not specified adaptive==True, default action is not adaptive 
-    parser.add_argument('--adaptive', action='store_true', default=False)
-    parser.add_argument('--adaptive_mask_ratio', default=0.0, type=float)
 
     known_args, _ = parser.parse_known_args()
 
@@ -316,8 +311,6 @@ def main(args, ds_init):
         drop_block_rate=None,
         use_mean_pooling=args.use_mean_pooling,
         init_scale=args.init_scale,
-        adaptive=args.adaptive,
-        adaptive_mask_ratio = args.adaptive_mask_ratio,
     )
 
     if args.model == "vit_base_patch16_224":
@@ -468,21 +461,11 @@ def main(args, ds_init):
 
     if mixup_fn is not None:
         # smoothing is handled with mixup label transform
-        # If adaptive: loss output has the batch dimention
-        if args.adaptive:
-            criterion = SoftTargetCrossEntropy(reduction_mean=False)
-        else:
-            criterion = SoftTargetCrossEntropy(reduction_mean=True)
+        criterion = SoftTargetCrossEntropy()
     elif args.smoothing > 0.:
-        if args.adaptive:
-            criterion = LabelSmoothingCrossEntropy(smoothing=args.smoothing, reduction_mean=False)
-        else: 
-            criterion = LabelSmoothingCrossEntropy(smoothing=args.smoothing, reduction_mean=True)
+        criterion = LabelSmoothingCrossEntropy(smoothing=args.smoothing)
     else:
-        if args.adaptive:
-            criterion = torch.nn.CrossEntropyLoss(reduction='none')
-        else:
-            criterion = torch.nn.CrossEntropyLoss()
+        criterion = torch.nn.CrossEntropyLoss()
 
     print("criterion = %s" % str(criterion))
 
@@ -520,7 +503,6 @@ def main(args, ds_init):
             log_writer=log_writer, start_steps=epoch * num_training_steps_per_epoch,
             lr_schedule_values=lr_schedule_values, wd_schedule_values=wd_schedule_values,
             num_training_steps_per_epoch=num_training_steps_per_epoch, update_freq=args.update_freq,
-            save_dir=args.output_dir, adaptive=args.adaptive,
         )
         if args.output_dir and args.save_ckpt:
             if (epoch + 1) % args.save_ckpt_freq == 0 or epoch + 1 == args.epochs:

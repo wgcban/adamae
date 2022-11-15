@@ -7,34 +7,12 @@ import torch
 from timm.data import Mixup
 from timm.utils import accuracy, ModelEma
 import msc.utils
-import scipy
-from scipy.special import softmax
-import os
 
-def train_class_batch(model, samples, target, criterion, is_adaptive):
-    outputs, p_x, vis_idx, mask = model(samples)
 
-    # (1) Cross-entropy loss
-    loss_batch_ce = criterion(outputs, target)
-
-    if (not is_adaptive):
-        return torch.tensor([0.0]), loss_batch_ce, loss_batch_ce, outputs, None, None
-    else:
-        loss_adaptive=0
-        action_log_probs=torch.zeros(p_x.shape[0]).to(loss_batch_ce.device)
-        for i in range(p_x.shape[0]):
-            m = torch.distributions.categorical.Categorical(probs=p_x[i])
-            action_log_probs[i] = torch.mean(m.log_prob(vis_idx[i]))
-        
-            # (3) Loss for adaptive token selection
-            loss_adaptive    = loss_adaptive -0.15/20*torch.mean(action_log_probs*loss_batch_ce.detach())
-
-        # (4) CE loss
-        loss_ce = torch.mean(loss_batch_ce)
-
-        # (5) Total loss
-        loss_t = loss_ce + loss_adaptive
-        return loss_adaptive, loss_ce, loss_t, outputs, p_x, mask
+def train_class_batch(model, samples, target, criterion):
+    outputs = model(samples)
+    loss = criterion(outputs, target)
+    return loss, outputs
 
 
 def get_loss_scale_for_deepspeed(model):
@@ -47,7 +25,7 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
                     device: torch.device, epoch: int, loss_scaler, max_norm: float = 0,
                     model_ema: Optional[ModelEma] = None, mixup_fn: Optional[Mixup] = None, log_writer=None,
                     start_steps=None, lr_schedule_values=None, wd_schedule_values=None,
-                    num_training_steps_per_epoch=None, update_freq=None, save_dir=None, adaptive=False):
+                    num_training_steps_per_epoch=None, update_freq=None):
     model.train(True)
     metric_logger = msc.utils.MetricLogger(delimiter="  ")
     metric_logger.add_meter('lr', msc.utils.SmoothedValue(window_size=1, fmt='{value:.6f}'))
@@ -82,16 +60,14 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
 
         if loss_scaler is None:
             samples = samples.half()
-            loss_adaptive, loss_ce, loss, output, p_x, mask = train_class_batch(
-                model, samples, targets, criterion, adaptive)
+            loss, output = train_class_batch(
+                model, samples, targets, criterion)
         else:
             with torch.cuda.amp.autocast():
-                loss_adaptive, loss_ce, loss, output, p_x, mask = train_class_batch(
-                    model, samples, targets, criterion, adaptive)
+                loss, output = train_class_batch(
+                    model, samples, targets, criterion)
 
         loss_value = loss.item()
-        loss_adaptive_value = loss_adaptive.item()
-        loss_ce_value = loss_ce.item()
 
         if not math.isfinite(loss_value):
             print("Loss is {}, stopping training".format(loss_value))
@@ -148,8 +124,6 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
 
         if log_writer is not None:
             log_writer.update(loss=loss_value, head="loss")
-            log_writer.update(loss_ce=loss_ce_value, head="loss")
-            log_writer.update(loss_adaptive=loss_adaptive_value, head="loss")
             log_writer.update(class_acc=class_acc, head="loss")
             log_writer.update(loss_scale=loss_scale_value, head="opt")
             log_writer.update(lr=max_lr, head="opt")
@@ -158,13 +132,6 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
             log_writer.update(grad_norm=grad_norm, head="opt")
 
             log_writer.set_step()
-        
-        if (epoch % 10 ==0) and (step  == 0) and (adaptive):
-            scipy.io.savemat(os.path.join(save_dir+'train_p_e{}.mat'.format(epoch)), {
-                'video': samples.detach().cpu().numpy(),
-                'p':torch.reshape(p_x, (p_x.shape[0], 8, 14, 14)).detach().cpu().numpy(), 
-                'mask':torch.reshape(mask, (mask.shape[0], 8, 14, 14)).detach().cpu().numpy()})
-
 
     # gather the stats from all processes
     metric_logger.synchronize_between_processes()
@@ -190,7 +157,7 @@ def validation_one_epoch(data_loader, model, device):
 
         # compute output
         with torch.cuda.amp.autocast():
-            output, p_x, vis_idx, mask = model(videos)
+            output = model(videos)
             loss = criterion(output, target)
 
         acc1, acc5 = accuracy(output, target, topk=(1, 5))
@@ -212,7 +179,7 @@ def validation_one_epoch(data_loader, model, device):
 def final_test(data_loader, model, device, file):
     criterion = torch.nn.CrossEntropyLoss()
 
-    metric_logger = msc.utils.MetricLogger(delimiter="  ")
+    metric_logger = utils.MetricLogger(delimiter="  ")
     header = 'Test:'
 
     # switch to evaluation mode
@@ -230,7 +197,7 @@ def final_test(data_loader, model, device, file):
 
         # compute output
         with torch.cuda.amp.autocast():
-            output, _, _, _ = model(videos)
+            output = model(videos)
             loss = criterion(output, target)
 
         for i in range(output.size(0)):
@@ -278,7 +245,6 @@ def merge(eval_path, num_tasks):
             chunk_nb = line.split(']')[1].split(' ')[2]
             split_nb = line.split(']')[1].split(' ')[3]
             data = np.fromstring(line.split('[')[1].split(']')[0], dtype=np.float, sep=',')
-            data = softmax(data)
             if not name in dict_feats:
                 dict_feats[name] = []
                 dict_label[name] = 0

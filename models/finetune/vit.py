@@ -196,9 +196,7 @@ class VisionTransformer(nn.Module):
                  init_scale=0.,
                  all_frames=16,
                  tubelet_size=2,
-                 use_mean_pooling=True,
-                 adaptive=False,
-                 adaptive_mask_ratio=1.0,):
+                 use_mean_pooling=True):
         super().__init__()
         self.num_classes = num_classes
         self.num_features = self.embed_dim = embed_dim  # num_features for consistency with other models
@@ -206,7 +204,6 @@ class VisionTransformer(nn.Module):
         self.patch_embed = PatchEmbed(
             img_size=img_size, patch_size=patch_size, in_chans=in_chans, embed_dim=embed_dim, num_frames=all_frames, tubelet_size=self.tubelet_size)
         num_patches = self.patch_embed.num_patches
-        self.is_adaptive = adaptive
 
         if use_learnable_pos_emb:
             self.pos_embed = nn.Parameter(torch.zeros(1, num_patches, embed_dim))
@@ -237,23 +234,6 @@ class VisionTransformer(nn.Module):
         self.head.weight.data.mul_(init_scale)
         self.head.bias.data.mul_(init_scale)
 
-        # Adaptive sampling ...
-        if self.is_adaptive:
-            self.visible_patches = int(num_patches*(1-adaptive_mask_ratio))
-            print("No. of visible patches selected for fine-training: {}".format(self.visible_patches))
-            self.pos_embed_probs = nn.Parameter(torch.zeros(1, num_patches, embed_dim))
-            self.get_token_probs = nn.Sequential(
-                                    Block(dim=embed_dim, num_heads=8, mlp_ratio=4., qkv_bias=False, qk_scale=None,
-                                    drop=0.1, attn_drop=0.00, drop_path=0.00, norm_layer=nn.LayerNorm,
-                                    init_values=0.),
-                                    Block(dim=embed_dim, num_heads=8, mlp_ratio=4., qkv_bias=False, qk_scale=None,
-                                    drop=0.1, attn_drop=0.00, drop_path=0.00, norm_layer=nn.LayerNorm,
-                                    init_values=0.),
-                                    nn.Linear(embed_dim, 1),
-                                    torch.nn.Flatten(start_dim=1),
-                                    )                  
-            self.softmax =  nn.Softmax(dim=-1)
-
     def _init_weights(self, m):
         if isinstance(m, nn.Linear):
             trunc_normal_(m.weight, std=.02)
@@ -277,55 +257,27 @@ class VisionTransformer(nn.Module):
         self.num_classes = num_classes
         self.head = nn.Linear(self.embed_dim, num_classes) if num_classes > 0 else nn.Identity()
 
-    def get_mask(self, x):
-        x = x + self.pos_embed_probs.type_as(x).to(x.device).clone() #detach() clone()
-        logits = self.get_token_probs(x)
-        p_x = self.softmax(logits)
-        
-        vis_idx = torch.multinomial(self.softmax(logits.detach()/0.8), num_samples=self.visible_patches, replacement=False)
-        mask = torch.ones((x.shape[0], x.shape[1])).to(x.device, non_blocking=True)
-        mask.scatter_(dim=-1, index=vis_idx.long(), value=0.0)
-        mask = mask.flatten(1).to(torch.bool)
-        return p_x, vis_idx, mask
-
     def forward_features(self, x):
         x = self.patch_embed(x)
+        B, _, _ = x.size()
 
-        #Get token probs for adaptive sampling
-        if self.is_adaptive:
-            p_x, vis_idx, mask = self.get_mask(x)
-
-        #Positional embedding
-        B, _, C = x.size()
         if self.pos_embed is not None:
             x = x + self.pos_embed.expand(B, -1, -1).type_as(x).to(x.device).clone().detach()
-        
-        if self.is_adaptive:
-            #Adaptive sampling    
-            x = x[~mask].reshape(B, -1, C)
-        else:
-            #Dropout
-            x = self.pos_drop(x)
+        x = self.pos_drop(x)
 
         for blk in self.blocks:
             x = blk(x)
 
         x = self.norm(x)
         if self.fc_norm is not None:
-            if self.is_adaptive:
-                return self.fc_norm(x.mean(1)), p_x, vis_idx, mask
-            else:
-                return self.fc_norm(x.mean(1)), None, None, None
+            return self.fc_norm(x.mean(1))
         else:
-            if self.is_adaptive:
-                return x[:, 0], p_x, vis_idx, mask
-            else:
-                return x[:, 0], None, None, None
+            return x[:, 0]
 
     def forward(self, x):
-        x, p_x, vis_idx, mask = self.forward_features(x)
+        x = self.forward_features(x)
         x = self.head(x)
-        return x, p_x, vis_idx, mask
+        return x
 
 @register_model
 def vit_small_patch16_224(pretrained=False, **kwargs):
