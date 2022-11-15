@@ -8,6 +8,12 @@ From $SSv2$ (samples from $50th$ epoch)
 ![mask-vis-3](figs/adamae-mask-vis-7.gif)
 ![mask-vis-3](figs/adamae-mask-vis-8.gif)
 
+From $K400$ (samples from $50th$ epoch)
+![mask-vis-1](figs/adamae-mask-vis-1.gif)
+![mask-vis-2](figs/adamae-mask-vis-6.gif)
+![mask-vis-3](figs/adamae-mask-vis-7.gif)
+![mask-vis-3](figs/adamae-mask-vis-8.gif)
+
 
 - We propose *Ada*MAE, a novel, adaptive, and end-to-end trainable token sampling strategy for MAEs that takes into account the spatiotemporal properties of all input tokens to sample fewer but informative tokens.
 
