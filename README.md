@@ -6,17 +6,28 @@ From $SSv2$ (samples from $50th$ epoch)
 
 <p float="left">
   <img src="figs/ssv2-mask-vis-1.gif" width="410" />
-  <img src="figs/ssv2-mask-vis-1.gif" width="410" /> 
+  <img src="figs/ssv2-mask-vis-2.gif" width="410" /> 
 </p>
-
-![mask-vis-ssv2-1](figs/ssv2-mask-vis-1.gif) 
-![mask-vis-ssv2-2](figs/ssv2-mask-vis-6.gif)
-![mask-vis-ssv2-3](figs/ssv2-mask-vis-7.gif)
-![mask-vis-ssv2-3](figs/ssv2-mask-vis-8.gif)
-![mask-vis-ssv2-3](figs/ssv2-mask-vis-9.gif)
-![mask-vis-ssv2-3](figs/ssv2-mask-vis-10.gif)
-![mask-vis-ssv2-3](figs/ssv2-mask-vis-12.gif)
-![mask-vis-ssv2-3](figs/ssv2-mask-vis-13.gif)
+<p float="left">
+  <img src="figs/ssv2-mask-vis-3.gif" width="410" />
+  <img src="figs/ssv2-mask-vis-4.gif" width="410" /> 
+</p>
+<p float="left">
+  <img src="figs/ssv2-mask-vis-5.gif" width="410" />
+  <img src="figs/ssv2-mask-vis-6.gif" width="410" /> 
+</p>
+<p float="left">
+  <img src="figs/ssv2-mask-vis-7.gif" width="410" />
+  <img src="figs/ssv2-mask-vis-8.gif" width="410" /> 
+</p>
+<p float="left">
+  <img src="figs/ssv2-mask-vis-9.gif" width="410" />
+  <img src="figs/ssv2-mask-vis-10.gif" width="410" /> 
+</p>
+<p float="left">
+  <img src="figs/ssv2-mask-vis-11.gif" width="410" />
+  <img src="figs/ssv2-mask-vis-12.gif" width="410" /> 
+</p>
 
 From $K400$ (samples from $50th$ epoch)
 
