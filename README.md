@@ -65,10 +65,11 @@
 
 - We show that our *Ada*MAE outperforms state-of-the-art (SOTA) by $0.7\%$ and $1.1\%$ (in top-1) improvements on $SSv2$ and $Kinetics-400$, respectively.
 
+### Method
 ![mask-vis-1](figs/adamae-intro-fig.jpeg)
 
 
-## A comparision
+### A comparision
 
 Comparison of our adaptive masking with existing random *patch*, *tube*, and *frame* masking for masking ratio of 80\%.} Our adaptive masking approach selects more tokens from the regions with high spatiotemporal information while a small number of tokens from the background.
 
