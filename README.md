@@ -1,7 +1,9 @@
 # *Ada*MAE: Adaptive Masking for Efficient Spatiotemporal Learning with Masked Autoencoders
 
+*Left to right*: Video, Predicted video (mask ratio = 95%), Prediction error, Predicted categorical distribution, Sampled mask
 ![intro-fig](figs/adamae-mask-vis-1.gif)
 ![mask-vis-2](figs/adamae-mask-vis-6.gif)
+
 
 - We propose *Ada*MAE, a novel, adaptive, and end-to-end trainable token sampling strategy for MAEs that takes into account the spatiotemporal properties of all input tokens to sample fewer but informative tokens.
 
