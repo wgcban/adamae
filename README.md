@@ -31,15 +31,30 @@ From $SSv2$ (samples from $50th$ epoch)
 
 From $K400$ (samples from $50th$ epoch)
 
-![mask-vis-k400-1](figs/k400-mask-vis-1.gif)
-![mask-vis-k400-2](figs/k400-mask-vis-2.gif)
-![mask-vis-k400-3](figs/k400-mask-vis-3.gif)
-![mask-vis-k400-3](figs/k400-mask-vis-4.gif)
-![mask-vis-k400-4](figs/k400-mask-vis-5.gif)
-![mask-vis-k400-5](figs/k400-mask-vis-6.gif)
-![mask-vis-k400-6](figs/k400-mask-vis-7.gif)
-![mask-vis-k400-7](figs/k400-mask-vis-8.gif)
-
+<p float="left">
+  <img src="figs/k400-mask-vis-1.gif" width="410" />
+  <img src="figs/k400-mask-vis-2.gif" width="410" /> 
+</p>
+<p float="left">
+  <img src="figs/k400-mask-vis-3.gif" width="410" />
+  <img src="figs/k400-mask-vis-4.gif" width="410" /> 
+</p>
+<p float="left">
+  <img src="figs/k400-mask-vis-5.gif" width="410" />
+  <img src="figs/k400-mask-vis-6.gif" width="410" /> 
+</p>
+<p float="left">
+  <img src="figs/k400-mask-vis-7.gif" width="410" />
+  <img src="figs/k400-mask-vis-8.gif" width="410" /> 
+</p>
+<p float="left">
+  <img src="figs/k400-mask-vis-9.gif" width="410" />
+  <img src="figs/k400-mask-vis-10.gif" width="410" /> 
+</p>
+<p float="left">
+  <img src="figs/k400-mask-vis-11.gif" width="410" />
+  <img src="figs/k400-mask-vis-12.gif" width="410" /> 
+</p>
 
 - We propose *Ada*MAE, a novel, adaptive, and end-to-end trainable token sampling strategy for MAEs that takes into account the spatiotemporal properties of all input tokens to sample fewer but informative tokens.
 
