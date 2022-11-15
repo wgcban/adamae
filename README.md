@@ -1,6 +1,6 @@
 # *Ada*MAE: Adaptive Masking for Efficient Spatiotemporal Learning with Masked Autoencoders
 
-*Left to right*: Video, Predicted video (mask ratio = 95%), Prediction error, Predicted categorical distribution, Sampled mask
+*Left to right*: **(1)** Video, **(2)** Predicted video (mask ratio = 95%), **(3)** Prediction error, **(4)** Predicted categorical distribution, **(5)** Sampled mask
 ![intro-fig](figs/adamae-mask-vis-1.gif)
 ![mask-vis-2](figs/adamae-mask-vis-6.gif)
 
