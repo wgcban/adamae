@@ -3,16 +3,16 @@
 *Left to right*: **(1)** Video, **(2)** Predicted video (mask ratio = 95%), **(3)** Prediction error (MSE), **(4)** Predicted categorical distribution, **(5)** Sampled mask
 
 From $SSv2$ (samples from $50th$ epoch)
-![mask-vis-ssv2-1](figs/adamae-mask-vis-1.gif)
-![mask-vis-ssv2-2](figs/adamae-mask-vis-6.gif)
-![mask-vis-ssv2-3](figs/adamae-mask-vis-7.gif)
-![mask-vis-ssv2-3](figs/adamae-mask-vis-8.gif)
+![mask-vis-ssv2-1](figs/ssv2-mask-vis-1.gif)
+![mask-vis-ssv2-2](figs/ssv2-mask-vis-6.gif)
+![mask-vis-ssv2-3](figs/ssv2-mask-vis-7.gif)
+![mask-vis-ssv2-3](figs/ssv2-mask-vis-8.gif)
 
 From $K400$ (samples from $50th$ epoch)
-![mask-vis-k400-1](figs/adamae-mask-vis-1.gif)
-![mask-vis-k400-2](figs/adamae-mask-vis-6.gif)
-![mask-vis-k400-3](figs/adamae-mask-vis-7.gif)
-![mask-vis-k400-3](figs/adamae-mask-vis-8.gif)
+![mask-vis-k400-1](figs/ssv2-mask-vis-1.gif)
+![mask-vis-k400-2](figs/ssv2-mask-vis-6.gif)
+![mask-vis-k400-3](figs/ssv2-mask-vis-7.gif)
+![mask-vis-k400-3](figs/ssv2-mask-vis-8.gif)
 
 
 - We propose *Ada*MAE, a novel, adaptive, and end-to-end trainable token sampling strategy for MAEs that takes into account the spatiotemporal properties of all input tokens to sample fewer but informative tokens.
