@@ -2,7 +2,7 @@
 
 *Left to right*: **(1)** Video, **(2)** Predicted video (mask ratio = 95%), **(3)** Prediction error (MSE), **(4)** Predicted categorical distribution, **(5)** Sampled mask
 
-## From $SSv2$ (samples from $50th$ epoch)
+### From $SSv2$ (samples from $50th$ epoch)
 
 <p float="left">
   <img src="figs/ssv2-mask-vis-1.gif" width="410" />
@@ -29,7 +29,7 @@
   <img src="figs/ssv2-mask-vis-12.gif" width="410" /> 
 </p>
 
-## From $K400$ (samples from $50th$ epoch)
+### From $K400$ (samples from $50th$ epoch)
 
 <p float="left">
   <img src="figs/k400-mask-vis-1.gif" width="410" />
