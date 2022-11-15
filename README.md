@@ -1,12 +1,4 @@
-# VideoMAEZippin
-Representation learning from videos
-
-# Conda activate
-conda activate VideoMAE2
-
-# Version History
-## Pretraining:
-### v2
+# AdaMAE: Adaptive Masking for Efficient Spatiotemporal \\Learning with Masked Autoencoders
 
 
 
