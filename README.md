@@ -34,7 +34,7 @@
 
 ### From $K400$ (samples from $50th$ epoch)
 
-| &nbsp; Video &nbsp;  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT &nbsp; &nbsp; | &nbsp; Mask &nbsp; | &nbsp; Video &nbsp;  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT &nbsp; &nbsp; | &nbsp; Mask |
+| &nbsp; Video &nbsp;  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT &nbsp; &nbsp; | Mask | &nbsp; Video &nbsp;  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT &nbsp; &nbsp; | &nbsp; Mask |
 | ----------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
 
 <p float="left">
