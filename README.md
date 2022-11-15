@@ -16,5 +16,5 @@ Comparison of our adaptive masking with existing random *patch*, *tube*, and *fr
 
 We use ViT-Base as the backbone for all experiments. MHA $(D=2, d=384)$ denotes our adaptive token sampling network with a depth of two and embedding dimension of $384$.  All pre-trained models are evaluated based on the evaluation protocol described in Sec. 4. The default choice of our *Ada*MAE is highlighted in gray color. The GPU memory consumption is reported for a batch size of 16 on a single GPU.
 
-![mask-type-comp](figs/adamae-ablations.jpeg)
+![mask-type-comp](figs/adamae-ablations.jng)
 
