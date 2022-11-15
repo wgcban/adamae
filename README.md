@@ -6,7 +6,7 @@
 
 - We demonstrate the efficiency of *Ada*MAE in terms of performance and GPU memory against random *patch*, *tube*, and *frame* sampling by conducting a thorough ablation study on the SSv2 dataset.
 
-- We show that our *Ada*MAE outperforms state-of-the-art (SOTA) by $0.7\%$ and $1.1\%$ (in top-1) improvements on SSv2 and Kinetics-400, respectively.
+- We show that our *Ada*MAE outperforms state-of-the-art (SOTA) by $0.7\%$ and $1.1\%$ (in top-1) improvements on $SSv2$ and $Kinetics-400$, respectively.
 
 ![intro-fig](figs/adamae-intro-fig.jpeg)
 
