@@ -11,3 +11,10 @@
 Comparison of our adaptive masking with existing random *patch*, *tube*, and *frame* masking for masking ratio of 80\%.} Our adaptive masking approach selects more tokens from the regions with high spatiotemporal information while a small number of tokens from the background.
 
 ![mask-type-comp](figs/adamae-mask-types.jpeg)
+
+## Ablation experiments on SSv2 dataset
+
+We use ViT-Base as the backbone for all experiments. MHA $(D=2, d=384)$ denotes our adaptive token sampling network with a depth of two and embedding dimension of $384$.  All pre-trained models are evaluated based on the evaluation protocol described in Sec. 4. The default choice of our *Ada*MAE is highlighted in gray color. The GPU memory consumption is reported for a batch size of 16 on a single GPU.
+
+![mask-type-comp](figs/adamae-ablations.jpeg)
+
