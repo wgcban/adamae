@@ -4,7 +4,7 @@
 
 ### From $SSv2$ (samples from $50th$ epoch)
 
-|  Input Video  | Pred. | Error | Categorical | Mask | Video | Pred. | Error | Categorical | Mask |
+|  &nbsp Video &nbsp  | Pred. | Error | Categorical | Mask | Video | Pred. | Error | Categorical | Mask |
 | ----------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | 
 
 <p float="left">
