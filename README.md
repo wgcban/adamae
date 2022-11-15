@@ -5,9 +5,9 @@
 From $SSv2$ (samples from $50th$ epoch)
 
 <p float="left">
-  <img src="figs/ssv2-mask-vis-1.gif" width="100" />
-  <img src="figs/ssv2-mask-vis-1.gif" width="100" /> 
-  <img src="figs/ssv2-mask-vis-1.gif" width="100" />
+  <img src="figs/ssv2-mask-vis-1.gif" width="200" />
+  <img src="figs/ssv2-mask-vis-1.gif" width="200" /> 
+  <img src="figs/ssv2-mask-vis-1.gif" width="200" />
 </p>
 
 ![mask-vis-ssv2-1](figs/ssv2-mask-vis-1.gif) 
