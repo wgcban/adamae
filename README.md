@@ -1,7 +1,5 @@
 # *Ada*MAE: Adaptive Masking for Efficient Spatiotemporal Learning with Masked Autoencoders
 
-*Left to right*: **(1)** Video, **(2)** Predicted video (mask ratio = 95%), **(3)** Prediction error (MSE), **(4)** Predicted categorical distribution, **(5)** Sampled mask
-
 ### From $SSv2$ (samples from $50th$ epoch)
 
 | &nbsp; Video &nbsp;  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT &nbsp; | Mask | &nbsp; |  Video  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT  &nbsp; | Mask &nbsp; |
@@ -87,9 +85,18 @@ We use ViT-Base as the backbone for all experiments. MHA $(D=2, d=384)$ denotes 
 
 ![ssv2-ablations](figs/adamae-ablations.png)
 
+# Pretraining *Ada*MAE
+
+- We closely follow the [VideoMAE](https://github.com/MCG-NJU/VideoMAE.git) pre-trainig receipy, but now with adaptive token sampling instead of tube masking. To pre-train AdaMAE, please follow the steps in [DATASET.md](readme/DATASET.md), [PRETRAIN.md](readme/PRETRAIN.md).
+
+- To check the performance of pre-trained *Ada*MAE please follow the steps in [DATASET.md](readme/DATASET.md) and [FINETUNE.md](readme/FINETUNE.md).
+
+- To setup the conda environment, please refer [FINETUNE.md](readme/INSTALL.md).
+
 
 ## Acknowledgement
 Our AdaMAE codebase is based on the implementation of VideoMAE paper. We thank the authors of [**VideoMAE**](https://github.com/MCG-NJU/VideoMAE.git) for making their code available to the public.
+
 
 
 ## Citation
