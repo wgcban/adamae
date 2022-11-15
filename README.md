@@ -87,7 +87,7 @@ We use ViT-Base as the backbone for all experiments. MHA $(D=2, d=384)$ denotes 
 
 # Pretraining *Ada*MAE
 
-- We closely follow the [VideoMAE](https://github.com/MCG-NJU/VideoMAE.git) pre-trainig receipy, but now with adaptive token sampling instead of tube masking. To pre-train AdaMAE, please follow the steps in [DATASET.md](readme/DATASET.md), [PRETRAIN.md](readme/PRETRAIN.md).
+- We closely follow the [VideoMAE](https://github.com/MCG-NJU/VideoMAE.git) pre-trainig receipy, but now with our *adaptive masking* instead of *tube masking*. To pre-train *Ada*MAE, please follow the steps in [``DATASET.md``](readme/DATASET.md), [PRETRAIN.md](readme/PRETRAIN.md).
 
 - To check the performance of pre-trained *Ada*MAE please follow the steps in [DATASET.md](readme/DATASET.md) and [FINETUNE.md](readme/FINETUNE.md).
 
