@@ -4,8 +4,8 @@
 
 ### From $SSv2$ (samples from $50th$ epoch)
 
-| &nbsp; Video &nbsp;  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT &nbsp; &nbsp; | Mask | &nbsp; Video &nbsp;  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT &nbsp; &nbsp; | &nbsp; Mask |
-| ----------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | 
+| &nbsp; Video &nbsp;  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT &nbsp; &nbsp; | Mask | &nbsp; |  Video  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT &nbsp; &nbsp; | Mask |
+| ----------- | --------- | --------- | --------- | --------- |--|--------- | --------- | --------- | --------- | --------- |
 
 <p float="left">
   <img src="figs/ssv2-mask-vis-1.gif" width="410" />
