@@ -6,6 +6,8 @@
 
 ![intro-fig](figs/adamae-intro-fig.jpeg)
 
-## Comparision of adaptive masking with existing masking techniques
+## A comparision
+
+Comparison of our adaptive masking with existing random *patch*, *tube*, and *frame* masking for masking ratio of 80\%.} Our adaptive masking approach selects more tokens from the regions with high spatiotemporal information while a small number of tokens from the background.
 
 ![mask-type-comp](figs/adamae-mask-types.jpeg)
