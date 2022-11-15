@@ -25,3 +25,6 @@ The codebase is mainly built with following libraries:
 
 - We have observed accidental interrupt in the last epoch when conduct the pre-training experiments on V100 GPUs (PyTorch 1.6.0). This interrupt is caused by the scheduler of learning rate. We naively set  `--epochs 801` to walk away from issue :)
 
+
+### Acknowledgement
+Instructions copied from [VideoMAE](https://github.com/MCG-NJU/VideoMAE) codebase. We thank the authors of [VideoMAE](https://github.com/MCG-NJU/VideoMAE) for making their code available online!

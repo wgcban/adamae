@@ -145,3 +145,6 @@ srun -p $PARTITION \
         ${PY_ARGS}
 ```
 
+
+### Acknowledgement
+Instructions copied from [VideoMAE](https://github.com/MCG-NJU/VideoMAE) codebase. We thank the authors of [VideoMAE](https://github.com/MCG-NJU/VideoMAE) for making their code available online!
