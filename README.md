@@ -8,4 +8,4 @@
 
 ## Comparision of adaptive masking with existing masking techniques
 
-![mask-type-comp](adamae/figs/adamae-mask-types.jpeg)
+![mask-type-comp](figs/adamae-mask-types.jpeg)
