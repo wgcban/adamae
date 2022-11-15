@@ -24,6 +24,5 @@ Our AdaMAE codebase is based on the implementation of VideoMAE paper. We thank t
 
 
 ## Citation
-'''
-
-'''
+```
+```
