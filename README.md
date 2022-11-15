@@ -4,8 +4,10 @@
 
 ### From $SSv2$ (samples from $50th$ epoch)
 
+| ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | Video | Pred. | Error | Categorical | Mask | Video | Pred. | Error | Categorical | Mask |
- 
+| ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | 
+
 <p float="left">
   <img src="figs/ssv2-mask-vis-1.gif" width="410" />
   <img src="figs/ssv2-mask-vis-2.gif" width="410" /> 
