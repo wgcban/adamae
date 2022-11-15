@@ -32,10 +32,10 @@ def get_args():
     parser.add_argument('--decoder_depth', default=4, type=int,
                         help='depth of decoder')
 
-    parser.add_argument('--mask_type', default='learnable', choices=['random', 'tube', 'learnable'],
+    parser.add_argument('--mask_type', default='learnable', choices=['learnable'],
                         type=str, help='masked strategy of video tokens/patches')
 
-    parser.add_argument('--mask_ratio', default=0.75, type=float,
+    parser.add_argument('--mask_ratio', default=0.95, type=float,
                         help='ratio of the visual tokens/patches need be masked')
 
     parser.add_argument('--input_size', default=224, type=int,

@@ -10,7 +10,7 @@ DATA_PATH='DATA_PATH_TO_TRAIN_CVS'
 OMP_NUM_THREADS=1 python -m torch.distributed.launch --nproc_per_node=8 \
         --master_port 12320 --nnodes=8 \
         --node_rank=0 --master_addr=$ip_node_0 \
-        run_mae_pretraining.py \
+        pretrain_mae_vit.py \
         --data_path ${DATA_PATH} \
         --mask_type learnable \
         --mask_ratio 0.95 \
