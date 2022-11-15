@@ -1,6 +1,7 @@
 # *Ada*MAE: Adaptive Masking for Efficient Spatiotemporal Learning with Masked Autoencoders
 
 ![intro-fig](figs/adamae-mask-vis-1.gif)
+![mask-vis-2](figs/adamae-mask-vis-6.gif)
 
 - We propose *Ada*MAE, a novel, adaptive, and end-to-end trainable token sampling strategy for MAEs that takes into account the spatiotemporal properties of all input tokens to sample fewer but informative tokens.
 
@@ -11,8 +12,6 @@
 - We show that our *Ada*MAE outperforms state-of-the-art (SOTA) by $0.7\%$ and $1.1\%$ (in top-1) improvements on $SSv2$ and $Kinetics-400$, respectively.
 
 ![mask-vis-1](figs/adamae-intro-fig.jpeg)
-
-![mask-vis-2](figs/adamae-mask-vis-6.gif)
 
 
 ## A comparision
