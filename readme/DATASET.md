@@ -39,4 +39,4 @@ We have successfully pre-trained and fine-tuned our AdaMAE on [Kinetics400](http
 We use [decord](https://github.com/dmlc/decord) to decode the videos **on the fly** during both pre-training and fine-tuning phases.
 
 ### Acknowledgement
-Instructions copied from [VideoMAE](https://github.com/MCG-NJU/VideoMAE) codebase. We thank the authors of [VideoMAE](https://github.com/MCG-NJU/VideoMAE) for making their code available online!
+Instructions copied from the [VideoMAE](https://github.com/MCG-NJU/VideoMAE) codebase. We thank the authors of the [VideoMAE](https://github.com/MCG-NJU/VideoMAE) for making their code available online!

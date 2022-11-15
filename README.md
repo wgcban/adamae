@@ -95,7 +95,7 @@ We use ViT-Base as the backbone for all experiments. MHA $(D=2, d=384)$ denotes 
 
 
 ## Acknowledgement
-Our AdaMAE codebase is based on the implementation of VideoMAE paper. We thank the authors of [**VideoMAE**](https://github.com/MCG-NJU/VideoMAE.git) for making their code available to the public.
+Our AdaMAE codebase is based on the implementation of VideoMAE paper. We thank the authors of the [VideoMAE](https://github.com/MCG-NJU/VideoMAE.git) for making their code available to the public.
 
 
 

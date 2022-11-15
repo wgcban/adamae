@@ -147,4 +147,4 @@ srun -p $PARTITION \
 
 
 ### Acknowledgement
-Instructions copied from [VideoMAE](https://github.com/MCG-NJU/VideoMAE) codebase. We thank the authors of [VideoMAE](https://github.com/MCG-NJU/VideoMAE) for making their code available online!
+Instructions copied from the [VideoMAE](https://github.com/MCG-NJU/VideoMAE) codebase. We thank the authors of the [VideoMAE](https://github.com/MCG-NJU/VideoMAE) for making their code available online!
