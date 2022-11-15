@@ -1,28 +1,28 @@
 # Set the path to save checkpoints
-OUTPUT_DIR='experiments/kinetics400_videomae_pretrain_pretrain_videomae_base_patch16_224_learnable_masking_ratio_0.95_final/'
+OUTPUT_DIR='OUTPUT_DIR'
 # Set the path to SSV2 train set. 
-DATA_PATH='/data/wbandar1/datasets/kinetics/k400_320p_lists/kinetics400-320p-train.csv'
+DATA_PATH='PATH_TO_TRAIN_CVS'
 
 # batch_size can be adjusted according to number of GPUs
 # this script is for 64 GPUs (8 nodes x 8 GPUs)
-NCCL_P2P_DISABLE=1 OMP_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=8,9 torchrun --nproc_per_node=8 --master_port=65354\
-        pretrain_mae_vit.py \
+
+### mask_type = learnable and mask_ratio = 0.95 ###
+OMP_NUM_THREADS=1 python3 -m torch.distributed.launch --nproc_per_node=8 \
+        --master_port 12320 --nnodes=8 \
+        --node_rank=0 --master_addr=$your_node_0_ip \
+        run_mae_pretraining.py \
         --data_path ${DATA_PATH} \
         --mask_type learnable \
         --mask_ratio 0.95 \
         --model pretrain_videomae_base_patch16_224 \
         --decoder_depth 4 \
-        --batch_size 16 \
+        --batch_size 32 \
         --num_frames 16 \
-        --sampling_rate 2 \
+        --sampling_rate 4 \
         --opt adamw \
         --opt_betas 0.9 0.95 \
         --warmup_epochs 40 \
         --save_ckpt_freq 20 \
-        --epochs 2400 \
+        --epochs 801 \
         --log_dir ${OUTPUT_DIR} \
         --output_dir ${OUTPUT_DIR}
-
-#Use following command to forward the port in the remote server
-#Forward port 6006 in server machine to 16006 in local machine
-#ssh -L 16006:127.0.0.1:6006 chaminda@10.26.12.241
