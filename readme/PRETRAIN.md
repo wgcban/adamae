@@ -14,9 +14,9 @@ The implementation of our VideoMAE supports **multi-node distributed training**.
           --master_port 12320 --nnodes=8 \
           --node_rank=0 --master_addr=$ip_node_0 \
           run_mae_pretraining.py \
+          --mask_type learnable \
           --data_path ${DATA_PATH} \
-          --mask_type tube \
-          --mask_ratio 0.9 \
+          --mask_ratio 0.95 \
           --model pretrain_videomae_base_patch16_224 \
           --decoder_depth 4 \
           --batch_size 32 \
@@ -44,8 +44,8 @@ The implementation of our VideoMAE supports **multi-node distributed training**.
           --node_rank=0 --master_addr=$your_node_0_ip \
           run_mae_pretraining.py \
           --data_path ${DATA_PATH} \
-          --mask_type tube \
-          --mask_ratio 0.9 \
+          --mask_type learnable \
+          --mask_ratio 0.95 \
           --model pretrain_videomae_base_patch16_224 \
           --decoder_depth 4 \
           --batch_size 32 \
@@ -101,8 +101,8 @@ srun -p $PARTITION \
         ${SRUN_ARGS} \
         python -u run_mae_pretraining.py \
         --data_path ${DATA_PATH} \
-        --mask_type tube \
-        --mask_ratio 0.9 \
+        --mask_type learnable \
+        --mask_ratio 0.95 \
         --model pretrain_videomae_base_patch16_224 \
         --decoder_depth 4 \
         --batch_size 32 \
