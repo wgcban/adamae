@@ -5,7 +5,7 @@ DATA_PATH='/data/wbandar1/datasets/ss2/something-something-v2-train.csv'
 
 # batch_size can be adjusted according to number of GPUs
 # this script is for 64 GPUs (8 nodes x 8 GPUs)
-NCCL_P2P_DISABLE=1 OMP_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=0,1,2,3,6,7,8,9 torchrun --nproc_per_node=8 --master_port=65354\
+NCCL_P2P_DISABLE=1 OMP_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=8,9 torchrun --nproc_per_node=8 --master_port=65354\
         pretrain_mae_vit.py \
         --data_path ${DATA_PATH} \
         --mask_type learnable \

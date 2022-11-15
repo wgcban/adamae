@@ -13,7 +13,6 @@ from timm.models.layers import trunc_normal_ as __call_trunc_normal_
 __all__ = [
     'pretrain_videomae_base_patch16_224', 
     'pretrain_videomae_large_patch16_224',
-    'pretrain_mae_movinet',
 ]
 
 def trunc_normal_(tensor, mean=0., std=1.):
