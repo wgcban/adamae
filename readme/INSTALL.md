@@ -1,4 +1,4 @@
-# VideoMAE Installation
+# *Ada*MAE Installation
 
 The codebase is mainly built with following libraries:
 
