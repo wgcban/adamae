@@ -56,40 +56,34 @@ def train_one_epoch(model: torch.nn.Module, data_loader: Iterable, optimizer: to
             # labels = videos_patch[bool_masked_pos].reshape(B, -1, C)
 
         with torch.cuda.amp.autocast():
-            outputs, p_x, vis_idx, bool_masked_pos = model(videos)
+            mask_outputs, p_x, bool_masked_pos = model(videos)
 
-            # labels (lbls in the original order)
+            # mask_labels (lbls in the original order)
             mask_labels = videos_patch[bool_masked_pos].reshape(B, -1, C) # vis_labels = videos_patch[~bool_masked_pos].reshape(B, -1, C)
-
-            # outputs ([vis, mask] order)
-            mask_outputs = outputs[:, -mask_labels.shape[1]:] # vis_outputs = outputs[:, :vis_labels.shape[1]]
             
             # losses
-            # l_r -> B, N_m (for all tokens)
-            mask_l_r = torch.mean(loss_func(input=mask_outputs, target=mask_labels), dim=-1) #B, N_m # vis_l_r = torch.mean(loss_func(input=vis_outputs, target=vis_labels), dim=-1) #B, N_m
+            # Reconstruction loss: l_r -> B, N_m (for all tokens)
+            mask_l_r = torch.mean(loss_func(input=mask_outputs, target=mask_labels), dim=-1)
 
-            # l_s -> B, N_m
+            # Sampling loss: l_s -> B, N_m
             l_s =torch.zeros(videos.shape[0], ).to(mask_l_r.device)
             for i in range(p_x.shape[0]):
-                # distribution
+                # categorical distribution
                 m = torch.distributions.categorical.Categorical(probs=p_x[i])
                 
                 # log-probabilities
                 log_probs = m.log_prob(torch.arange(0, p_x.shape[1], 1).to(p_x.device)) # 1, N_m
                 
-                # visible log-probs
-                # vis_log_probs = log_probs[~bool_masked_pos[i]]
+                # mask log-probs
                 mask_log_probs = log_probs[bool_masked_pos[i]]
 
-                # expected log reconstruction loss
                 # we need to select tokens that maximize the reconstruction error, so (-) sign
-                # l_s[i] = -torch.mean(vis_log_probs)*torch.mean(mask_l_r[i].detach())
                 l_s[i] = -torch.mean(mask_log_probs*mask_l_r[i].detach())
                 
-            # total loss
-            m_l_r = torch.mean(mask_l_r)
-            m_l_s = 1e-4*torch.mean(l_s)
-            loss = m_l_r + m_l_s
+            # Total loss
+            m_l_r = torch.mean(mask_l_r) #Reconstruction loss
+            m_l_s = 1e-4*torch.mean(l_s) #Sampling loss
+            loss = m_l_r + m_l_s #Total loss
 
         loss_value = loss.item()
 
@@ -135,12 +129,6 @@ def train_one_epoch(model: torch.nn.Module, data_loader: Iterable, optimizer: to
 
             log_writer.set_step()
         
-        # Save results
-        if (epoch % 1 ==0) and (step == 0):
-            if str(unnorm_videos.device) == 'cuda:0':
-                print('saving results ...')
-                save_results(save_dir, epoch, step, unnorm_videos, outputs, p_x, bool_masked_pos)
-            
         if lr_scheduler is not None:
             lr_scheduler.step_update(start_steps + step)
     # gather the stats from all processes

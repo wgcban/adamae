@@ -125,7 +125,7 @@ class PretrainVisionTransformerEncoder(nn.Module):
     def forward(self, x):
         x, p_x, vis_idx, mask = self.forward_features(x)
         x = self.head(x)
-        return x, p_x, vis_idx, mask
+        return x, p_x, mask
 
 class PretrainVisionTransformerDecoder(nn.Module):
     """ Vision Transformer with support for patch or hybrid CNN input stage
@@ -281,7 +281,7 @@ class PretrainVisionTransformer(nn.Module):
 
     def forward(self, x):
         _, _, T, _, _ = x.shape
-        x_vis, p_x, vis_idx, mask = self.encoder(x) # [B, N_vis, C_e]
+        x_vis, p_x, mask = self.encoder(x) # [B, N_vis, C_e]
         x_vis = self.encoder_to_decoder(x_vis) # [B, N_vis, C_d]
         B, N, C = x_vis.shape
         # we don't unshuffle the correct visible token order, 
@@ -290,9 +290,9 @@ class PretrainVisionTransformer(nn.Module):
         pos_emd_vis = expand_pos_embed[~mask].reshape(B, -1, C)
         pos_emd_mask = expand_pos_embed[mask].reshape(B, -1, C)
         x_full = torch.cat([x_vis + pos_emd_vis, self.mask_token + pos_emd_mask], dim=1) # [B, N, C_d]
-        x = self.decoder(x_full, -1) # [B, N_mask, 3 * 16 * 16] pos_emd_mask.shape[1]
+        x_mask = self.decoder(x_full, pos_emd_mask.shape[1]) # [B, N_mask, 3 * 16 * 16] pos_emd_mask.shape[1]
 
-        return x, p_x, vis_idx, mask
+        return x_mask, p_x, mask
 
 @register_model
 def pretrain_mae_small_patch16_224(pretrained=False, **kwargs):
