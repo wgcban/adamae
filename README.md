@@ -1,6 +1,6 @@
 # *Ada*MAE: Adaptive Masking for Efficient Spatiotemporal Learning with Masked Autoencoders
 
-### Our contributions
+### Our contributions:
 - We propose *Ada*MAE, a novel, adaptive, and end-to-end trainable token sampling strategy for MAEs that takes into account the spatiotemporal properties of all input tokens to sample fewer but informative tokens.
 
 - We empirically show that *Ada*MAE samples more tokens from high spatiotemporal information regions of the input, resulting in learning meaningful representations for downstream tasks.
@@ -43,7 +43,7 @@
   <img src="figs/ssv2-mask-vis-12.gif" width="410" /> 
 </p>
 
-### Adaptive mask visualizations from $K400$ (samples from $50th$ epoch)
+### Adaptive mask visualizations from $K400$ (samples from $50th$ epoch):
 
 | &nbsp; Video &nbsp;  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT &nbsp; | Mask | &nbsp; |  Video  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT  &nbsp; | Mask &nbsp; |
 | ----------- | --------- | --------- | --------- | --------- |--|--------- | --------- | --------- | --------- | --------- |
@@ -79,13 +79,13 @@ Comparison of our adaptive masking with existing random *patch*, *tube*, and *fr
 
 ![mask-type-comp](figs/adamae-mask-types.jpeg)
 
-## Ablation experiments on SSv2 dataset
+## Ablation experiments on SSv2 dataset:
 
 We use ViT-Base as the backbone for all experiments. MHA $(D=2, d=384)$ denotes our adaptive token sampling network with a depth of two and embedding dimension of $384$.  All pre-trained models are evaluated based on the evaluation protocol described in Sec. 4. The default choice of our *Ada*MAE is highlighted in gray color. The GPU memory consumption is reported for a batch size of 16 on a single GPU.
 
 ![ssv2-ablations](figs/adamae-ablations.png)
 
-# Pre-training *Ada*MAE & fine-tuning
+# Pre-training *Ada*MAE & fine-tuning:
 
 - We closely follow the [VideoMAE](https://github.com/MCG-NJU/VideoMAE.git) pre-trainig receipy, but now with our *adaptive masking* instead of *tube masking*. To pre-train *Ada*MAE, please follow the steps in [``DATASET.md``](readme/DATASET.md), [``PRETRAIN.md``](readme/PRETRAIN.md).
 
@@ -94,11 +94,11 @@ We use ViT-Base as the backbone for all experiments. MHA $(D=2, d=384)$ denotes 
 - To setup the conda environment, please refer [``FINETUNE.md``](readme/INSTALL.md).
 
 
-## Acknowledgement
+## Acknowledgement:
 Our AdaMAE codebase is based on the implementation of VideoMAE paper. We thank the authors of the [VideoMAE](https://github.com/MCG-NJU/VideoMAE.git) for making their code available to the public.
 
 
 
-## Citation
+## Citation:
 ```
 ```
