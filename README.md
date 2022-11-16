@@ -1,6 +1,19 @@
 # *Ada*MAE: Adaptive Masking for Efficient Spatiotemporal Learning with Masked Autoencoders
 
-### From $SSv2$ (samples from $50th$ epoch)
+### Our contributions
+- We propose *Ada*MAE, a novel, adaptive, and end-to-end trainable token sampling strategy for MAEs that takes into account the spatiotemporal properties of all input tokens to sample fewer but informative tokens.
+
+- We empirically show that *Ada*MAE samples more tokens from high spatiotemporal information regions of the input, resulting in learning meaningful representations for downstream tasks.
+
+- We demonstrate the efficiency of *Ada*MAE in terms of performance and GPU memory against random *patch*, *tube*, and *frame* sampling by conducting a thorough ablation study on the SSv2 dataset.
+
+- We show that our *Ada*MAE outperforms state-of-the-art (SOTA) by $0.7\%$ and $1.1\%$ (in top-1) improvements on $SSv2$ and $Kinetics-400$, respectively.
+
+### Method
+![mask-vis-1](figs/adamae-intro-fig.jpeg)
+
+
+### Adaptive mask visualizations from $SSv2$ (samples from $50th$ epoch)
 
 | &nbsp; Video &nbsp;  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT &nbsp; | Mask | &nbsp; |  Video  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT  &nbsp; | Mask &nbsp; |
 | ----------- | --------- | --------- | --------- | --------- |--|--------- | --------- | --------- | --------- | --------- |
@@ -30,7 +43,7 @@
   <img src="figs/ssv2-mask-vis-12.gif" width="410" /> 
 </p>
 
-### From $K400$ (samples from $50th$ epoch)
+### Adaptive mask visualizations from $K400$ (samples from $50th$ epoch)
 
 | &nbsp; Video &nbsp;  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT &nbsp; | Mask | &nbsp; |  Video  | Pred. &nbsp;| &nbsp; Error &nbsp; | &nbsp; &nbsp; CAT  &nbsp; | Mask &nbsp; |
 | ----------- | --------- | --------- | --------- | --------- |--|--------- | --------- | --------- | --------- | --------- |
@@ -59,19 +72,6 @@
   <img src="figs/k400-mask-vis-11.gif" width="410" />
   <img src="figs/k400-mask-vis-12.gif" width="410" /> 
 </p>
-
-### Our contributions
-- We propose *Ada*MAE, a novel, adaptive, and end-to-end trainable token sampling strategy for MAEs that takes into account the spatiotemporal properties of all input tokens to sample fewer but informative tokens.
-
-- We empirically show that *Ada*MAE samples more tokens from high spatiotemporal information regions of the input, resulting in learning meaningful representations for downstream tasks.
-
-- We demonstrate the efficiency of *Ada*MAE in terms of performance and GPU memory against random *patch*, *tube*, and *frame* sampling by conducting a thorough ablation study on the SSv2 dataset.
-
-- We show that our *Ada*MAE outperforms state-of-the-art (SOTA) by $0.7\%$ and $1.1\%$ (in top-1) improvements on $SSv2$ and $Kinetics-400$, respectively.
-
-### Method
-![mask-vis-1](figs/adamae-intro-fig.jpeg)
-
 
 ### A comparision
 
