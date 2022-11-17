@@ -1,6 +1,6 @@
 # *Ada*MAE: Adaptive Masking for Efficient Spatiotemporal Learning with Masked Autoencoders
 
-:book: Paper: [``arXiv``](https://arxiv.org/)
+:book: Paper: [``arXiv``](https://arxiv.org/abs/2211.09120v1)
 
 ### :bulb: Contributions:
 - We propose *Ada*MAE, a novel, adaptive, and end-to-end trainable token sampling strategy for MAEs that takes into account the spatiotemporal properties of all input tokens to sample fewer but informative tokens.
@@ -103,4 +103,21 @@ Our AdaMAE codebase is based on the implementation of VideoMAE paper. We thank t
 
 ## Citation:
 ```
+@misc{https://doi.org/10.48550/arxiv.2211.09120,
+  doi = {10.48550/ARXIV.2211.09120},
+  
+  url = {https://arxiv.org/abs/2211.09120},
+  
+  author = {Bandara, Wele Gedara Chaminda and Patel, Naman and Gholami, Ali and Nikkhah, Mehdi and Agrawal, Motilal and Patel, Vishal M.},
+  
+  keywords = {Computer Vision and Pattern Recognition (cs.CV), Artificial Intelligence (cs.AI), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  
+  title = {AdaMAE: Adaptive Masking for Efficient Spatiotemporal Learning with Masked Autoencoders},
+  
+  publisher = {arXiv},
+  
+  year = {2022},
+  
+  copyright = {Creative Commons Attribution 4.0 International}
+}
 ```
