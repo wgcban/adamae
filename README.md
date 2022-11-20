@@ -103,21 +103,10 @@ Our AdaMAE codebase is based on the implementation of VideoMAE paper. We thank t
 
 ## Citation:
 ```
-@misc{https://doi.org/10.48550/arxiv.2211.09120,
-  doi = {10.48550/ARXIV.2211.09120},
-  
-  url = {https://arxiv.org/abs/2211.09120},
-  
-  author = {Bandara, Wele Gedara Chaminda and Patel, Naman and Gholami, Ali and Nikkhah, Mehdi and Agrawal, Motilal and Patel, Vishal M.},
-  
-  keywords = {Computer Vision and Pattern Recognition (cs.CV), Artificial Intelligence (cs.AI), FOS: Computer and information sciences, FOS: Computer and information sciences},
-  
-  title = {AdaMAE: Adaptive Masking for Efficient Spatiotemporal Learning with Masked Autoencoders},
-  
-  publisher = {arXiv},
-  
-  year = {2022},
-  
-  copyright = {Creative Commons Attribution 4.0 International}
+@article{bandara2022adamae,
+  title={AdaMAE: Adaptive Masking for Efficient Spatiotemporal Learning with Masked Autoencoders},
+  author={Bandara, Wele Gedara Chaminda and Patel, Naman and Gholami, Ali and Nikkhah, Mehdi and Agrawal, Motilal and Patel, Vishal M},
+  journal={arXiv preprint arXiv:2211.09120},
+  year={2022}
 }
 ```
