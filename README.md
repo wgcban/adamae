@@ -95,6 +95,9 @@ We use ViT-Base as the backbone for all experiments. MHA $(D=2, d=384)$ denotes 
 
 - To setup the conda environment, please refer [``FINETUNE.md``](readme/INSTALL.md).
 
+# Pre-trained model weights
+
+- Download the pre-trained model weights for SSv2 and K400 datasets [``here``](https://github.com/wgcban/adamae/releases/tag/v1).
 
 ## Acknowledgement:
 Our AdaMAE codebase is based on the implementation of VideoMAE paper. We thank the authors of the [VideoMAE](https://github.com/MCG-NJU/VideoMAE.git) for making their code available to the public.
