@@ -71,10 +71,10 @@ def build_dataset(is_train, test_mode, args):
             anno_path = os.path.join(args.data_path, 'train.csv')
         elif test_mode is True:
             mode = 'test'
-            anno_path = os.path.join(args.data_path, 'val.csv') 
+            anno_path = os.path.join(args.data_path, 'test.csv') 
         else:  
             mode = 'validation'
-            anno_path = os.path.join(args.data_path, 'test.csv') 
+            anno_path = os.path.join(args.data_path, 'val.csv') 
 
         dataset = VideoClsDataset(
             anno_path=anno_path,
@@ -102,10 +102,10 @@ def build_dataset(is_train, test_mode, args):
             anno_path = os.path.join(args.data_path, 'train.csv')
         elif test_mode is True:
             mode = 'test'
-            anno_path = os.path.join(args.data_path, 'val.csv') 
+            anno_path = os.path.join(args.data_path, 'test.csv') 
         else:  
             mode = 'validation'
-            anno_path = os.path.join(args.data_path, 'test.csv') 
+            anno_path = os.path.join(args.data_path, 'val.csv') 
 
         dataset = SSVideoClsDataset(
             anno_path=anno_path,
@@ -132,10 +132,10 @@ def build_dataset(is_train, test_mode, args):
             anno_path = os.path.join(args.data_path, 'train.csv')
         elif test_mode is True:
             mode = 'test'
-            anno_path = os.path.join(args.data_path, 'val.csv') 
+            anno_path = os.path.join(args.data_path, 'test.csv') 
         else:  
             mode = 'validation'
-            anno_path = os.path.join(args.data_path, 'test.csv') 
+            anno_path = os.path.join(args.data_path, 'val.csv') 
 
         dataset = VideoClsDataset(
             anno_path=anno_path,
@@ -163,10 +163,10 @@ def build_dataset(is_train, test_mode, args):
             anno_path = os.path.join(args.data_path, 'train.csv')
         elif test_mode is True:
             mode = 'test'
-            anno_path = os.path.join(args.data_path, 'val.csv') 
+            anno_path = os.path.join(args.data_path, 'test.csv') 
         else:  
             mode = 'validation'
-            anno_path = os.path.join(args.data_path, 'test.csv') 
+            anno_path = os.path.join(args.data_path, 'val.csv') 
 
         dataset = VideoClsDataset(
             anno_path=anno_path,
