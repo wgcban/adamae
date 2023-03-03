@@ -1,6 +1,7 @@
 # [CVPR'23] *Ada*MAE: Adaptive Masking for Efficient Spatiotemporal Learning with Masked Autoencoders
 
 :book: Paper: [``arXiv``](https://arxiv.org/abs/2211.09120v1)
+Our paper (AdaMAE) has been accepted for presentation at CVPR'23.
 
 ### :bulb: Contributions:
 - We propose *Ada*MAE, a novel, adaptive, and end-to-end trainable token sampling strategy for MAEs that takes into account the spatiotemporal properties of all input tokens to sample fewer but informative tokens.
