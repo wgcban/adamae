@@ -1,6 +1,7 @@
 # [CVPR'23] *Ada*MAE: Adaptive Masking for Efficient Spatiotemporal Learning with Masked Autoencoders
 
 :book: Paper: [``arXiv``](https://arxiv.org/abs/2211.09120v1)
+
 Our paper (AdaMAE) has been accepted for presentation at CVPR'23.
 
 ### :bulb: Contributions:
